@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+from flask_cors import CORS, cross_origin
 import face_recognition
 import cv2
 import numpy as np
@@ -6,14 +7,17 @@ import os
 
 
 app = Flask(__name__)
+cors = CORS(app)
 
 
 @app.route("/", methods=["GET"])
+@cross_origin()
 def hello_world():
     return render_template("index.html")
 
 
 @app.route("/submit", methods=["POST"])
+@cross_origin()
 def face_recog():
 
     imagefile = request.form["imagePath"].strip()
@@ -66,4 +70,4 @@ def face_recog():
 
 
 if __name__ == "__main__":
-    app.run(port=5510, debug=True)
+    app.run(port=5510, debug=False)
