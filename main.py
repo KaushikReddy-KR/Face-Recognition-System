@@ -52,7 +52,6 @@ def face_recog():
         if matches[best_match_index]:
             name = known_face_names[best_match_index]
             name = os.path.splitext(os.path.basename(name))[0]
-            print(name)
             if name == userId:
                 is_matched = True
 
