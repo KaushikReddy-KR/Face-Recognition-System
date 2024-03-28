@@ -3,7 +3,6 @@ import face_recognition
 import cv2
 import numpy as np
 import os
-import requests
 
 
 app = Flask(__name__)
@@ -16,10 +15,9 @@ def hello_world():
 
 @app.route("/submit", methods=["POST"])
 def face_recog():
-    print(request.form)
-   
-    imagefile = "2021BCS0102.jpg"
-    userId = request.form['id'].upper()
+
+    imagefile = request.form["imagePath"].strip()
+    userId = request.form["id"].upper()
     image_path = "../../photos/" + imagefile
 
     trained_model = np.load("model/trained_model.npz")
