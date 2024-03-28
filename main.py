@@ -21,8 +21,6 @@ def face_recog():
     userId = data.get("id").upper()
     image_path = "../../photos/" + imagefile
 
-    nodejs_server_url = "http://172.16.207.194:3000/api/v1/populate/face/recognition"
-
     trained_model = np.load("trained_model.npz")
     known_face_encodings = trained_model["known_face_encodings"]
     known_face_names = trained_model["known_face_names"]
@@ -55,17 +53,17 @@ def face_recog():
         if matches[best_match_index]:
             name = known_face_names[best_match_index]
             name = os.path.splitext(os.path.basename(name))[0]
-        if name == userId:
-            is_matched = True
+            if name == userId:
+                is_matched = True
 
     # return face_names
     if is_matched:
         response = {"status": 200, "identification": name}
 
     else:
-        response = {"status": 404, "identification": []}
+        response = {"status": 404, "identification": ""}
 
-    result = requests.post(nodejs_server_url, json=response)
+    return response
 
 
 if __name__ == "__main__":
