@@ -20,7 +20,7 @@ def hello_world():
 @cross_origin()
 def face_recog():
 
-    imagefile = request.form["imagePath"].strip()
+    imagefile = request.form["fileName"].strip()
     userId = request.form["id"].upper()
     image_path = "../../photos/" + imagefile
 
