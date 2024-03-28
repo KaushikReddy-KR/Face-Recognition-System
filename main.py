@@ -18,7 +18,7 @@ def hello_world():
 def face_recog():
     print(request.form)
    
-    imagefile = "2021BCS0032.jpg"
+    imagefile = "2021BCS0102.jpg"
     userId = request.form['id'].upper()
     image_path = "../../photos/" + imagefile
 
@@ -54,6 +54,7 @@ def face_recog():
         if matches[best_match_index]:
             name = known_face_names[best_match_index]
             name = os.path.splitext(os.path.basename(name))[0]
+            print(name)
             if name == userId:
                 is_matched = True
 
