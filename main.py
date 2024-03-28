@@ -16,12 +16,13 @@ def hello_world():
 
 @app.route("/submit", methods=["POST"])
 def face_recog():
-    data = request.json
-    imagefile = data.get("fileName")
-    userId = data.get("id").upper()
+    print(request.form)
+   
+    imagefile = "2021BCS0032.jpg"
+    userId = request.form['id'].upper()
     image_path = "../../photos/" + imagefile
 
-    trained_model = np.load("trained_model.npz")
+    trained_model = np.load("model/trained_model.npz")
     known_face_encodings = trained_model["known_face_encodings"]
     known_face_names = trained_model["known_face_names"]
 
